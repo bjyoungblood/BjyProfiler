@@ -2,6 +2,8 @@
 
 namespace BjyProfiler\Db\Profiler;
 
+use BjyProfiler\Db\Profiler\Profiler;
+
 class Query
 {
     protected $sql = '';
@@ -62,6 +64,27 @@ class Query
 
     public function toArray()
     {
+        switch ($this->queryType) {
+            case Profiler::SELECT:
+                $type = 'SELECT';
+                break;
+            case Profiler::INSERT:
+                $type = 'INSERT';
+                break;
+            case Profiler::UPDATE:
+                $type = 'UPDATE';
+                break;
+            case Profiler::DELETE:
+                $type = 'DELETE';
+                break;
+            case Profiler::QUERY:
+                $type = 'OTHER';
+                break;
+            case Profiler::CONNECT:
+                $type = 'CONNECT';
+                break;
+        }
+
         return array(
             'sql'     => $this->sql,
             'start'   => $this->startTime,
