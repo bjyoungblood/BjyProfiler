@@ -86,10 +86,11 @@ class Query
         }
 
         return array(
+            'type'    => $type,
             'sql'     => $this->sql,
             'start'   => $this->startTime,
             'end'     => $this->endTime,
-            'elapsed' => $this->getElapsedTime
+            'elapsed' => $this->getElapsedTime()
         );
     }
 }
