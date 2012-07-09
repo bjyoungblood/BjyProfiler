@@ -17,7 +17,9 @@ class ProfilingStatement extends Statement
             $saveParams = $parameters;
         }
 
-        $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams);
+        $stack = debug_backtrace();
+
+        $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams, $stack);
         $result = parent::execute($parameters);
         $this->getProfiler()->endQuery($queryId);
 

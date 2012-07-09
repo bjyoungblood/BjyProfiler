@@ -17,7 +17,14 @@ class ProfilingStatement extends Statement
             $saveParams = $parameters;
         }
 
-        $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams);
+        if (function_exists('xdebug_get_function_stack')) {
+            $stack = xdebug_get_function_stack();
+        } else {
+            $stack = array();
+        }
+
+
+        $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams, $stack);
         $result = parent::execute($parameters);
         $this->getProfiler()->endQuery($queryId);
 

@@ -11,12 +11,14 @@ class Query
     protected $startTime = null;
     protected $endTime = null;
     protected $parameters = null;
+    protected $callStack = array();
 
-    public function __construct($sql, $queryType, $parameters = null)
+    public function __construct($sql, $queryType, $parameters = null, $stack = array())
     {
         $this->sql = $sql;
         $this->queryType = $queryType;
         $this->parameters = $parameters;
+        $this->callStack = $stack;
     }
 
     public function start()
@@ -94,6 +96,7 @@ class Query
             'end'     => $this->endTime,
             'elapsed' => $this->getElapsedTime(),
             'parameters' => $this->parameters,
+            'stack'   => $this->callStack
         );
     }
 }

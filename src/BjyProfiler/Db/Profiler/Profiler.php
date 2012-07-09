@@ -48,7 +48,7 @@ class Profiler
         return $this->filterTypes;
     }
 
-    public function startQuery($sql, $parameters = null)
+    public function startQuery($sql, $parameters = null, $stack = array())
     {
         if (!$this->enabled) {
             return null;
@@ -73,7 +73,7 @@ class Profiler
                 break;
         }
 
-        $profile = new Query($sql, $queryType, $parameters);
+        $profile = new Query($sql, $queryType, $parameters, $stack);
         $this->profiles[] = $profile;
         $profile->start();
 
