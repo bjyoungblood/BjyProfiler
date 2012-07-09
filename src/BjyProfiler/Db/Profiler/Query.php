@@ -59,4 +59,14 @@ class Query
     {
         return $this->queryType;
     }
+
+    public function toArray()
+    {
+        return array(
+            'sql'     => $this->sql,
+            'start'   => $this->startTime,
+            'end'     => $this->endTime,
+            'elapsed' => $this->getElapsedTime
+        );
+    }
 }

@@ -31,6 +31,7 @@ return array(
                 ));
 
                 $adapter->setProfiler(new BjyProfiler\Db\Profiler\Profiler);
+                $adapter->injectProfilingStatementPrototype();
                 return $adapter;
             },
         ),

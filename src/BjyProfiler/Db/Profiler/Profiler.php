@@ -56,7 +56,7 @@ class Profiler
 
         // try to detect the query type
         if ($queryType === null) {
-            switch (strtoupper(substr(ltrim($sql), 0, 6))) {
+            switch (strtolower(substr(ltrim($sql), 0, 6))) {
                 case 'select':
                     $queryType = static::SELECT;
                     break;
@@ -113,4 +113,5 @@ class Profiler
 
         return $profiles;
     }
+
 }
