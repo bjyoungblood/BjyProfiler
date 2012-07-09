@@ -10,11 +10,13 @@ class Query
     protected $queryType = 0;
     protected $startTime = null;
     protected $endTime = null;
+    protected $parameters = null;
 
-    public function __construct($sql, $queryType)
+    public function __construct($sql, $queryType, $parameters = null)
     {
         $this->sql = $sql;
         $this->queryType = $queryType;
+        $this->parameters = $parameters;
     }
 
     public function start()
@@ -90,7 +92,8 @@ class Query
             'sql'     => $this->sql,
             'start'   => $this->startTime,
             'end'     => $this->endTime,
-            'elapsed' => $this->getElapsedTime()
+            'elapsed' => $this->getElapsedTime(),
+            'parameters' => $this->parameters,
         );
     }
 }

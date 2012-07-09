@@ -48,34 +48,32 @@ class Profiler
         return $this->filterTypes;
     }
 
-    public function startQuery($sql, $queryType = null)
+    public function startQuery($sql, $parameters = null)
     {
         if (!$this->enabled) {
             return null;
         }
 
         // try to detect the query type
-        if ($queryType === null) {
-            switch (strtolower(substr(ltrim($sql), 0, 6))) {
-                case 'select':
-                    $queryType = static::SELECT;
-                    break;
-                case 'insert':
-                    $queryType = static::INSERT;
-                    break;
-                case 'update':
-                    $queryType = static::UPDATE;
-                    break;
-                case 'delete':
-                    $queryType = static::DELETE;
-                    break;
-                default:
-                    $queryType = static::QUERY;
-                    break;
-            }
+        switch (strtolower(substr(ltrim($sql), 0, 6))) {
+            case 'select':
+                $queryType = static::SELECT;
+                break;
+            case 'insert':
+                $queryType = static::INSERT;
+                break;
+            case 'update':
+                $queryType = static::UPDATE;
+                break;
+            case 'delete':
+                $queryType = static::DELETE;
+                break;
+            default:
+                $queryType = static::QUERY;
+                break;
         }
 
-        $profile = new Query($sql, $queryType);
+        $profile = new Query($sql, $queryType, $parameters);
         $this->profiles[] = $profile;
         $profile->start();
 
