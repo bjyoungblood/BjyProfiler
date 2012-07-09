@@ -11,7 +11,13 @@ class ProfilingStatement extends Statement
 
     public function execute($parameters = null)
     {
-        $queryId = $this->getProfiler()->startQuery($this->getSql());
+        if ($parameters === null) {
+            $saveParams = (array) $this->parameterContainer->getNamedArray();
+        } else {
+            $saveParams = $parameters;
+        }
+
+        $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams);
         $result = parent::execute($parameters);
         $this->getProfiler()->endQuery($queryId);
 
