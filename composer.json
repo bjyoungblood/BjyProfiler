@@ -1,0 +1,28 @@
+{
+    "name": "bjyoungblood/BjyProfiler",
+    "description": "Database profiler for Zend\\Db (also plugin for ZendDeveloperTools)",
+    "type": "library",
+    "keywords": [
+        "zf2",
+        "db",
+        "profiler",
+        "zdt"
+    ],
+    "homepage": "https://github.com/bjyoungblood/BjyProfiler",
+    "authors": [
+        {
+            "name": "Ben Youngblood",
+            "email": "bx.youngblood@gmail.com",
+            "homepage": "http://bjyoungblood.com/"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "dev-master"
+    },
+    "autoload": {
+        "psr-0": {
+            "BjyAuthorize": "src/"
+        }
+    }
+}
