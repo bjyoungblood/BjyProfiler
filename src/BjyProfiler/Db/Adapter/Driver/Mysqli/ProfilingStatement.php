@@ -12,16 +12,16 @@ class ProfilingStatement extends Statement
     public function execute($parameters = null)
     {
         if ($parameters === null) {
-            $saveParams = (array) $this->parameterContainer->getNamedArray();
+            if ($this->parameterContainer != null) {
+                $saveParams = (array) $this->parameterContainer->getNamedArray();
+            } else {
+                $saveParams = array();
+            }
         } else {
             $saveParams = $parameters;
         }
 
-        if (function_exists('xdebug_get_function_stack')) {
-            $stack = xdebug_get_function_stack();
-        } else {
-            $stack = array();
-        }
+        $stack = debug_backtrace();
 
         $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams, $stack);
         $result = parent::execute($parameters);

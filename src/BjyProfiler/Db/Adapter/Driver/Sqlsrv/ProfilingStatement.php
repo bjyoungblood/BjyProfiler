@@ -12,7 +12,11 @@ class ProfilingStatement extends Statement
     public function execute($parameters = null)
     {
         if ($parameters === null) {
-            $saveParams = (array) $this->parameterContainer->getNamedArray();
+            if ($this->parameterContainer != null) {
+                $saveParams = (array) $this->parameterContainer->getNamedArray();
+            } else {
+                $saveParams = array();
+            }
         } else {
             $saveParams = $parameters;
         }
