@@ -1,5 +1,5 @@
 {
-    "name": "bjyoungblood/BjyProfiler",
+    "name": "bjyoungblood/bjyoungblood/bjy-profiler",
     "description": "Database profiler for Zend\\Db (also plugin for ZendDeveloperTools)",
     "type": "library",
     "keywords": [
