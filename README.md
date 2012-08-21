@@ -3,6 +3,13 @@ BjyProfiler
 Provides Zend\Db adapters with extensions for database query profiling, as well as a profiler similar to ZF1's Zend\_Db\_Profiler.
 I ported much of this code from ZF1's Zend_Db.
 
+Composer/Packagist Users
+========================
+
+Please note the name of this project's package has changed to bjyoungblood/bjy-profiler
+in order to match composer/packagist's new naming conventions. Please update your composer.json
+to use the new package name.
+
 Configuration & Usage
 ---------------------
 Following is a sample database configuration:
