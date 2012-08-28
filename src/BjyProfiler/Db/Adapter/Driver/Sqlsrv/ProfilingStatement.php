@@ -1,6 +1,6 @@
 <?php
 
-namespace BjyProfiler\Db\Adapter\Driver\Pgsql;
+namespace BjyProfiler\Db\Adapter\Driver\Sqlsrv;
 
 use BjyProfiler\Db\Profiler\Profiler;
 use Zend\Db\Adapter\Driver\Pgsql\Statement;
