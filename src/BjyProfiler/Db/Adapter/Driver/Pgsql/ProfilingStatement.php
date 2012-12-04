@@ -21,7 +21,11 @@ class ProfilingStatement extends Statement
             $saveParams = $parameters;
         }
 
-        $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        if (version_compare('5.3.6', phpversion(), '<=')) {
+            $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+        } else {
+            $stack = array();
+        }
 
         $queryId = $this->getProfiler()->startQuery($this->getSql(), $saveParams, $stack);
         $result = parent::execute($parameters);
