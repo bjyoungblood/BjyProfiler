@@ -23,7 +23,9 @@ $dbParams = array(
     'database'  => 'changeme',
     'username'  => 'changeme',
     'password'  => 'changeme',
-    'hostname'  => 'localhost'
+    'hostname'  => 'localhost',
+    // buffer_results - only for mysqli buffered queries, skip for others
+    'options' => array('buffer_results' => true)
 );
 
 return array(
@@ -40,7 +42,12 @@ return array(
                 ));
 
                 $adapter->setProfiler(new BjyProfiler\Db\Profiler\Profiler);
-                $adapter->injectProfilingStatementPrototype();
+                if (isset($dbParams['options']) && is_array($dbParams['options'])) {
+                    $options = $dbParams['options'];
+                } else {
+                    $options = array();
+                }
+                $adapter->injectProfilingStatementPrototype($options);
                 return $adapter;
             },
         ),
