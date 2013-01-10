@@ -10,7 +10,12 @@ return array(
                 if(class_exists('BjyProfiler\Db\Adapter\ProfilingAdapter')){
                     $adapter = new BjyProfiler\Db\Adapter\ProfilingAdapter($config['db']);
                     $adapter->setProfiler(new BjyProfiler\Db\Profiler\Profiler);
-                    $adapter->injectProfilingStatementPrototype();
+                    if (isset($config['db']['options']) && is_array($config['db']['options'])) {
+                        $options = $config['db']['options'];
+                    } else {
+                        $options = array();
+                    }
+                    $adapter->injectProfilingStatementPrototype($options);
                 } else {
                     $adapter = new Zend\Db\Adapter\Adapter($config['db']);
                 }

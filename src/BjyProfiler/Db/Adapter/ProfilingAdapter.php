@@ -21,7 +21,7 @@ class ProfilingAdapter extends Adapter
     }
 
 
-    public function injectProfilingStatementPrototype()
+    public function injectProfilingStatementPrototype(array $options = array())
     {
         $profiler = $this->getProfiler();
         if (!$profiler instanceof Profiler) {
@@ -33,7 +33,10 @@ class ProfilingAdapter extends Adapter
             $driverName = get_class($driver);
             switch ($driverName) {
                 case 'Zend\Db\Adapter\Driver\Mysqli\Mysqli':
-                    $statementPrototype = new Driver\Mysqli\ProfilingStatement();
+                    $defaults = array('buffer_results' => false);
+                    $options = array_intersect_key(array_merge($defaults, $options), $defaults);
+
+                    $statementPrototype = new Driver\Mysqli\ProfilingStatement($options['buffer_results']);
                     break;
                 case 'Zend\Db\Adapter\Driver\Sqlsrv\Sqlsrv':
                     $statementPrototype = new Driver\Sqlsrv\ProfilingStatement();
