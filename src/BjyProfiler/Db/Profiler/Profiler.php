@@ -37,6 +37,18 @@ class Profiler
         $this->filterTypes = 127;
     }
 
+    public function enable()
+    {
+        $this->enabled = true;
+        return $this;
+    }
+
+    public function disable()
+    {
+        $this->enabled = false;
+        return $this;
+    }
+
     public function setFilterQueryType($queryTypes = null)
     {
         $this->filterTypes = $queryTypes;
