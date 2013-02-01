@@ -4,12 +4,13 @@ namespace BjyProfiler\Db\Adapter;
 
 use BjyProfiler\Db\Profiler\Profiler;
 use Zend\Db\Adapter\Adapter;
+use Zend\Db\Adapter\Profiler\ProfilerInterface;
 
 class ProfilingAdapter extends Adapter
 {
     protected $profiler;
 
-    public function setProfiler(Profiler $p)
+    public function setProfiler(ProfilerInterface $p)
     {
         $this->profiler = $p;
         return $this;
