@@ -2,7 +2,9 @@
 
 namespace BjyProfiler\Db\Profiler;
 
-class Profiler
+use Zend\Db\Adapter\Profiler\ProfilerInterface;
+
+class Profiler implements ProfilerInterface
 {
 
     /**
@@ -122,6 +124,18 @@ class Profiler
         }
 
         return $profiles;
+    }
+
+    public function profilerStart($target)
+    {
+        $sql = $target->getSql();
+        $params = $target->getParameterContainer();
+        $this->startQuery($sql, $params);
+    }
+
+    public function profilerFinish()
+    {
+        
     }
 
 }
