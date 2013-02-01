@@ -2,8 +2,8 @@
 
 namespace BjyProfiler\Db\Adapter\Driver\Pgsql;
 
-use BjyProfiler\Db\Profiler\Profiler;
 use Zend\Db\Adapter\Driver\Pgsql\Statement;
+use Zend\Db\Adapter\Profiler\ProfilerInterface;
 
 class ProfilingStatement extends Statement
 {
@@ -34,7 +34,7 @@ class ProfilingStatement extends Statement
         return $result;
     }
 
-    public function setProfiler(Profiler $p)
+    public function setProfiler(ProfilerInterface $p)
     {
         $this->profiler = $p;
         return $this;
