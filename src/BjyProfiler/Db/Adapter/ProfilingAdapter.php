@@ -33,6 +33,9 @@ class ProfilingAdapter extends Adapter
         if (method_exists($driver, 'registerStatementPrototype')) {
             $driverName = get_class($driver);
             switch ($driverName) {
+                case 'Zend\Db\Adapter\Driver\IbmDb2\IbmDb2':
+                    $statementPrototype = new Driver\IbmDb2\ProfilingStatement();
+                    break;
                 case 'Zend\Db\Adapter\Driver\Mysqli\Mysqli':
                     $defaults = array('buffer_results' => false);
                     $options = array_intersect_key(array_merge($defaults, $options), $defaults);
