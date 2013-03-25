@@ -4,6 +4,7 @@ namespace BjyProfiler\Db\Adapter;
 
 use BjyProfiler\Db\Profiler\Profiler;
 use Zend\Db\Adapter\Adapter;
+use Zend\Db\Adapter\Driver as ZdbDriver;
 use Zend\Db\Adapter\Profiler\ProfilerInterface;
 
 class ProfilingAdapter extends Adapter
@@ -20,7 +21,6 @@ class ProfilingAdapter extends Adapter
     {
         return $this->profiler;
     }
-
 
     public function injectProfilingStatementPrototype(array $options = array())
     {
@@ -53,14 +53,11 @@ class ProfilingAdapter extends Adapter
                     break;
                 case 'Zend\Db\Adapter\Driver\Pdo\Pdo':
                 default:
-                    $statementPrototype = new Driver\Pdo\ProfilingStatement();
+                    $statementPrototype = new ZdbDriver\Pdo\Statement();
             }
 
-            if(isset($statementPrototype)) {
-                $statementPrototype->setProfiler($this->getProfiler());
-                $driver->registerStatementPrototype($statementPrototype);
-            }
-
+            $statementPrototype->setProfiler($this->getProfiler());
+            $driver->registerStatementPrototype($statementPrototype);
         }
     }
 }

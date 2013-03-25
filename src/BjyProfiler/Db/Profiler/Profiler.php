@@ -10,13 +10,13 @@ class Profiler implements ProfilerInterface
     /**
      * Logical OR these together to get a proper query type filter
      */
-    const CONNECT       = 1;
-    const QUERY         = 2;
-    const INSERT        = 4;
-    const UPDATE        = 8;
-    const DELETE        = 16;
-    const SELECT        = 32;
-    const TRANSACTION   = 64;
+    const CONNECT = 1;
+    const QUERY = 2;
+    const INSERT = 4;
+    const UPDATE = 8;
+    const DELETE = 16;
+    const SELECT = 32;
+    const TRANSACTION = 64;
 
     /**
      * @var array
@@ -62,10 +62,18 @@ class Profiler implements ProfilerInterface
         return $this->filterTypes;
     }
 
-    public function startQuery($sql, $parameters = null, $stack = array())
+    public function startQuery($sql, $parameters = null, $stack = null)
     {
         if (!$this->enabled) {
             return null;
+        }
+
+        if (is_null($stack)) {
+            if (version_compare('5.3.6', phpversion(), '<=')) {
+                $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+            } else {
+                $stack = array();
+            }
         }
 
         // try to detect the query type
@@ -95,15 +103,13 @@ class Profiler implements ProfilerInterface
         return key($this->profiles);
     }
 
-    public function endQuery($queryId)
+    public function endQuery()
     {
         if (!$this->enabled) {
             return false;
         }
 
-        $queryProfile = $this->profiles[$queryId];
-        $queryProfile->end();
-
+        end($this->profiles)->end();
         return true;
     }
 
@@ -135,7 +141,6 @@ class Profiler implements ProfilerInterface
 
     public function profilerFinish()
     {
-        
+        $this->endQuery();
     }
-
 }
