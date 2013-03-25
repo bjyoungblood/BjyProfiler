@@ -42,6 +42,9 @@ class ProfilingAdapter extends Adapter
 
                     $statementPrototype = new Driver\Mysqli\ProfilingStatement($options['buffer_results']);
                     break;
+                case 'Zend\Db\Adapter\Driver\Oci8\Oci8':
+                    $statementPrototype = new Driver\Oci8\ProfilingStatement();
+                    break;
                 case 'Zend\Db\Adapter\Driver\Sqlsrv\Sqlsrv':
                     $statementPrototype = new Driver\Sqlsrv\ProfilingStatement();
                     break;
