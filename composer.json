@@ -1,5 +1,5 @@
 {
-    "name": "bjyoungblood/bjy-profiler",
+    "name": "inditel/bjy-profiler",
     "description": "Database profiler for Zend\\Db (also plugin for ZendDeveloperTools)",
     "type": "library",
     "keywords": [
@@ -8,12 +8,17 @@
         "profiler",
         "zdt"
     ],
-    "homepage": "https://github.com/bjyoungblood/BjyProfiler",
+    "homepage": "https://github.com/inditel/BjyProfiler",
     "authors": [
         {
             "name": "Ben Youngblood",
             "email": "bx.youngblood@gmail.com",
             "homepage": "http://bjyoungblood.com/"
+        },
+        {
+            "name": "Oliver Leisalu",
+            "email": "oliver@inditel.ee",
+            "homepage": "http://inditel.ee"
         }
     ],
     "require": {
