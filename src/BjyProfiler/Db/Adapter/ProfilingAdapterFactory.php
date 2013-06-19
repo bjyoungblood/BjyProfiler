@@ -1,8 +1,7 @@
 <?php
 /**
  * Created by Inditel Meedia OÜ
- * User: Oliver
- * Date: 19.06.13 10:01
+ * User: Oliver Leisalu
  */
 
 namespace BjyProfiler\Db\Adapter;
