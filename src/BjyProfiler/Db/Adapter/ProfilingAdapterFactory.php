@@ -5,10 +5,9 @@
  * Date: 19.06.13 10:01
  */
 
-namespace Helpers\Db\Adapter;
+namespace BjyProfiler\Db\Adapter;
 
 
-use BjyProfiler\Db\Adapter\ProfilingAdapter;
 use BjyProfiler\Db\Profiler\Profiler;
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
