@@ -56,10 +56,17 @@ class LoggingProfiler extends Profiler
         if (isset($options['parametersFinish'])) $this->setParametersFinish($options['parametersFinish']);
     }
 
-    public function profilerStart($target)
-    {
-        parent::profilerStart($target);
+    public function startQuery($sql, $parameters = null, $stack = null) {
+        parent::startQuery($sql, $parameters, $stack);
+        $this->logStart();
+    }
 
+    public function endQuery() {
+        $this->logEnd();
+        parent::endQuery();
+    }
+
+    private function logStart() {
         /** @var Query $lastQuery */
         $lastQuery = end($this->profiles);
         $this->getLogger()->log(
@@ -69,10 +76,7 @@ class LoggingProfiler extends Profiler
         );
     }
 
-    public function profilerFinish()
-    {
-        parent::profilerFinish();
-
+    private function logEnd() {
         /** @var Query $lastQuery */
         $lastQuery = end($this->profiles);
         $this->getLogger()->log(
