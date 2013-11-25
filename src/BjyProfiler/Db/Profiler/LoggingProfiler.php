@@ -89,8 +89,8 @@ class LoggingProfiler extends Profiler
 
     private function trimToMaxQueries() {
         $maxProfiles = $this->getMaxProfiles();
-        if ($maxProfiles > -1) {
-            if (count($this->profiles) > $maxProfiles) $this->profiles = array();
+        if ($maxProfiles > -1 && count($this->profiles) > $maxProfiles) {
+            array_shift($this->profiles);
         }
     }
 
