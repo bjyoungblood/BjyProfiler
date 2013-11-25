@@ -62,8 +62,9 @@ class LoggingProfiler extends Profiler
     }
 
     public function endQuery() {
-        $this->logEnd();
         parent::endQuery();
+        $this->logEnd();
+        $this->trimToMaxQueries();
     }
 
     private function logStart() {
@@ -84,7 +85,9 @@ class LoggingProfiler extends Profiler
             'Query finished',
             array_intersect_key($lastQuery->toArray(), array_flip($this->getParametersFinish()))
         );
+    }
 
+    private function trimToMaxQueries() {
         $maxProfiles = $this->getMaxProfiles();
         if ($maxProfiles > -1) {
             if (count($this->profiles) > $maxProfiles) $this->profiles = array();
