@@ -6,6 +6,7 @@ use BjyProfiler\Db\Profiler\Profiler;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\Driver as ZdbDriver;
 use Zend\Db\Adapter\Profiler\ProfilerInterface;
+use Zend\Db\ResultSet;
 
 class ProfilingAdapter extends Adapter
 {
@@ -22,7 +23,7 @@ class ProfilingAdapter extends Adapter
         return $this->profiler;
     }
 
-    public function query($sql, $parametersOrQueryMode = self::QUERY_MODE_PREPARE)
+    public function query($sql, $parametersOrQueryMode = self::QUERY_MODE_PREPARE, ResultSet\ResultSetInterface $resultPrototype = null)
     {
         $this->getProfiler()->startQuery($sql);
         $return = parent::query($sql, $parametersOrQueryMode);
