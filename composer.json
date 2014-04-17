@@ -19,7 +19,7 @@
     ],
     "require": {
         "php": ">=5.3",
-        "zendframework/zendframework": ">=2.1.0"
+        "zendframework/zend-db": ">=2.1.0"
     },
     "autoload": {
         "psr-0": {
