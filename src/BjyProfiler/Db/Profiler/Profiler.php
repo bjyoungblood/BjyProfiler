@@ -135,7 +135,7 @@ class Profiler implements ProfilerInterface
     public function profilerStart($target)
     {
         $sql = $target->getSql();
-        $params = $target->getParameterContainer();
+        $params = $target->getParameterContainer()->getNamedArray();
         $this->startQuery($sql, $params);
     }
 
