@@ -41,6 +41,9 @@ return array(
                     'username'  => $dbParams['username'],
                     'password'  => $dbParams['password'],
                     'hostname'  => $dbParams['hostname'],
+                    'driver_options' => array(
+                                            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES \'UTF8\''
+                                        ),
                 ));
 
                 if (php_sapi_name() == 'cli') {
