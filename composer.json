@@ -33,7 +33,7 @@
     },
     "extra": {
         "zf": {
-            "component": "BjyProfiler",
+            "module": "BjyProfiler",
             "config-provider": "BjyProfiler\\ConfigProvider"
         }
     }
