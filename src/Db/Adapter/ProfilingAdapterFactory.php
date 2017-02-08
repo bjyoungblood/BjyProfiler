@@ -18,10 +18,10 @@ class ProfilingAdapterFactory implements FactoryInterface
         $adapter = new ProfilingAdapter($config['db']);
 
         if (php_sapi_name() == 'cli') {
-            $logger = new Zend\Log\Logger();
+            $logger = new \Zend\Log\Logger();
             // write queries profiling info to stdout in CLI mode
-            $writer = new Zend\Log\Writer\Stream('php://output');
-            $logger->addWriter($writer, Zend\Log\Logger::DEBUG);
+            $writer = new \Zend\Log\Writer\Stream('php://output');
+            $logger->addWriter($writer, \Zend\Log\Logger::DEBUG);
             $adapter->setProfiler(new Profiler\LoggingProfiler($logger));
         } else {
             $adapter->setProfiler(new Profiler\Profiler());
