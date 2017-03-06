@@ -11,7 +11,7 @@ Composer/Packagist Users
 ========================
 
 ```console
-composer require andrey-mokhov/bjy-profiler:dev-master
+composer require andrey-mokhov/bjy-profiler
 ```
 
 Configuration & Usage
