@@ -3,10 +3,10 @@
 namespace BjyProfiler\Db\Profiler;
 
 use Zend\Db\Adapter\Profiler\ProfilerInterface;
+use Zend\Db\Adapter\StatementContainerInterface;
 
 class Profiler implements ProfilerInterface
 {
-
     /**
      * Logical OR these together to get a proper query type filter
      */
@@ -19,7 +19,7 @@ class Profiler implements ProfilerInterface
     const TRANSACTION = 64;
 
     /**
-     * @var array
+     * @var Query[]
      */
     protected $profiles = array();
 
@@ -64,11 +64,11 @@ class Profiler implements ProfilerInterface
 
     public function startQuery($sql, $parameters = null, $stack = null)
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return null;
         }
 
-        if (is_null($stack)) {
+        if (null === $stack) {
             if (version_compare('5.3.6', phpversion(), '<=')) {
                 $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
             } else {
@@ -105,7 +105,7 @@ class Profiler implements ProfilerInterface
 
     public function endQuery()
     {
-        if (!$this->enabled) {
+        if (! $this->enabled) {
             return false;
         }
 
@@ -115,9 +115,9 @@ class Profiler implements ProfilerInterface
 
     public function getQueryProfiles($queryTypes = null)
     {
-        $profiles = array();
+        $profiles = [];
 
-        if (count($this->profiles)) {
+        if (! empty($this->profiles)) {
             foreach ($this->profiles as $id => $profile) {
                 if ($queryTypes === null) {
                     $queryTypes = $this->filterTypes;
@@ -134,13 +134,20 @@ class Profiler implements ProfilerInterface
 
     public function profilerStart($target)
     {
-        $sql = $target->getSql();
-        $params = $target->getParameterContainer()->getNamedArray();
+        if ($target instanceof StatementContainerInterface) {
+            $sql = $target->getSql();
+            $params = $target->getParameterContainer()->getNamedArray();
+        } else {
+            $sql = $target;
+            $params = [];
+        }
         $this->startQuery($sql, $params);
+        return $this;
     }
 
     public function profilerFinish()
     {
         $this->endQuery();
+        return $this;
     }
 }

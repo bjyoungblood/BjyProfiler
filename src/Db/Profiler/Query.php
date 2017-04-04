@@ -2,8 +2,6 @@
 
 namespace BjyProfiler\Db\Profiler;
 
-use BjyProfiler\Db\Profiler\Profiler;
-
 class Query
 {
     protected $sql = '';
@@ -81,11 +79,12 @@ class Query
             case Profiler::DELETE:
                 $type = 'DELETE';
                 break;
-            case Profiler::QUERY:
-                $type = 'OTHER';
-                break;
             case Profiler::CONNECT:
                 $type = 'CONNECT';
+                break;
+            case Profiler::QUERY:
+            default:
+                $type = 'OTHER';
                 break;
         }
 

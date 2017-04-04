@@ -8,6 +8,7 @@ namespace BjyProfiler\Db\Adapter;
 
 use BjyProfiler\Db\Profiler;
 use Interop\Container\ContainerInterface;
+use Zend\Log;
 use Zend\ServiceManager\Factory\FactoryInterface;
 
 class ProfilingAdapterFactory implements FactoryInterface
@@ -18,10 +19,10 @@ class ProfilingAdapterFactory implements FactoryInterface
         $adapter = new ProfilingAdapter($config['db']);
 
         if (php_sapi_name() == 'cli') {
-            $logger = new \Zend\Log\Logger();
+            $logger = new Log\Logger();
             // write queries profiling info to stdout in CLI mode
-            $writer = new \Zend\Log\Writer\Stream('php://output');
-            $logger->addWriter($writer, \Zend\Log\Logger::DEBUG);
+            $writer = new Log\Writer\Stream('php://output');
+            $logger->addWriter($writer, Log\Logger::DEBUG);
             $adapter->setProfiler(new Profiler\LoggingProfiler($logger));
         } else {
             $adapter->setProfiler(new Profiler\Profiler());
@@ -29,7 +30,7 @@ class ProfilingAdapterFactory implements FactoryInterface
         if (isset($config['db']['options']) && is_array($config['db']['options'])) {
             $options = $config['db']['options'];
         } else {
-            $options = array();
+            $options = [];
         }
         $adapter->injectProfilingStatementPrototype($options);
         return $adapter;
