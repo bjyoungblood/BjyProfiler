@@ -27,12 +27,6 @@ class ProfilingAdapterFactory implements FactoryInterface
         } else {
             $adapter->setProfiler(new Profiler\Profiler());
         }
-        if (isset($config['db']['options']) && is_array($config['db']['options'])) {
-            $options = $config['db']['options'];
-        } else {
-            $options = [];
-        }
-        $adapter->injectProfilingStatementPrototype($options);
         return $adapter;
     }
 }
