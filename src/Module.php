@@ -2,10 +2,12 @@
 
 namespace BjyProfiler;
 
-class Module
+use Zend\ModuleManager\Feature\ConfigProviderInterface;
+
+class Module implements ConfigProviderInterface
 {
     /**
-     * Retrieve default zend-db configuration for zend-mvc context.
+     * Retrieve default configuration for zend-mvc context.
      *
      * @return array
      */

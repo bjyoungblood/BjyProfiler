@@ -35,16 +35,22 @@ class LoggingProfiler extends Profiler
      * @var array
      * @see Query
      */
-    protected $parametersStart = array('sql', 'parameters');
+    protected $parametersStart = ['sql', 'parameters'];
     /**
      * Query parameters to log on query finish
      *
      * @var array
      * @see Query
      */
-    protected $parametersFinish = array('elapsed');
+    protected $parametersFinish = ['elapsed'];
 
-    public function __construct(Logger $logger, $enabled = true, array $options = array())
+    /**
+     * LoggingProfiler constructor.
+     * @param Logger $logger
+     * @param bool   $enabled
+     * @param array  $options
+     */
+    public function __construct(Logger $logger, $enabled = true, array $options = [])
     {
         parent::__construct($enabled);
         $this->setLogger($logger);
@@ -63,15 +69,26 @@ class LoggingProfiler extends Profiler
         }
     }
 
+    /**
+     * @param string $sql
+     * @param null   $parameters
+     * @param null   $stack
+     * @return int|null
+     */
     public function startQuery($sql, $parameters = null, $stack = null) {
-        parent::startQuery($sql, $parameters, $stack);
+        $result = parent::startQuery($sql, $parameters, $stack);
         $this->logStart();
+        return $result;
     }
 
+    /**
+     * @return bool
+     */
     public function endQuery() {
-        parent::endQuery();
+        $result = parent::endQuery();
         $this->logEnd();
         $this->trimToMaxQueries();
+        return $result;
     }
 
     private function logStart() {

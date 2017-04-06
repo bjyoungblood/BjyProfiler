@@ -21,7 +21,7 @@ class Profiler implements ProfilerInterface
     /**
      * @var Query[]
      */
-    protected $profiles = array();
+    protected $profiles = [];
 
     /**
      * @var boolean
@@ -33,35 +33,58 @@ class Profiler implements ProfilerInterface
      */
     protected $filterTypes;
 
+    /**
+     * Profiler constructor.
+     * @param bool $enabled
+     */
     public function __construct($enabled = true)
     {
         $this->enabled = $enabled;
         $this->filterTypes = 127;
     }
 
+    /**
+     * @return static
+     */
     public function enable()
     {
         $this->enabled = true;
         return $this;
     }
 
+    /**
+     * @return static
+     */
     public function disable()
     {
         $this->enabled = false;
         return $this;
     }
 
+    /**
+     * @param int $queryTypes
+     * @return static
+     */
     public function setFilterQueryType($queryTypes = null)
     {
         $this->filterTypes = $queryTypes;
         return $this;
     }
 
+    /**
+     * @return int
+     */
     public function getFilterQueryType()
     {
         return $this->filterTypes;
     }
 
+    /**
+     * @param string     $sql
+     * @param array|null $parameters
+     * @param array|null $stack
+     * @return int|null
+     */
     public function startQuery($sql, $parameters = null, $stack = null)
     {
         if (! $this->enabled) {
@@ -72,7 +95,7 @@ class Profiler implements ProfilerInterface
             if (version_compare('5.3.6', phpversion(), '<=')) {
                 $stack = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
             } else {
-                $stack = array();
+                $stack = [];
             }
         }
 
@@ -103,6 +126,9 @@ class Profiler implements ProfilerInterface
         return key($this->profiles);
     }
 
+    /**
+     * @return bool
+     */
     public function endQuery()
     {
         if (! $this->enabled) {
@@ -113,6 +139,10 @@ class Profiler implements ProfilerInterface
         return true;
     }
 
+    /**
+     * @param int|null $queryTypes
+     * @return Query[]
+     */
     public function getQueryProfiles($queryTypes = null)
     {
         $profiles = [];
@@ -132,6 +162,10 @@ class Profiler implements ProfilerInterface
         return $profiles;
     }
 
+    /**
+     * @param string|StatementContainerInterface $target
+     * @return static
+     */
     public function profilerStart($target)
     {
         if ($target instanceof StatementContainerInterface) {
@@ -145,6 +179,9 @@ class Profiler implements ProfilerInterface
         return $this;
     }
 
+    /**
+     * @return static
+     */
     public function profilerFinish()
     {
         $this->endQuery();

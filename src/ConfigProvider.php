@@ -13,7 +13,7 @@ use Zend\Db\Adapter\AdapterInterface;
 class ConfigProvider
 {
     /**
-     * Retrieve zend-db default configuration.
+     * Retrieve BjyProfiler default configuration.
      *
      * @return array
      */
@@ -25,7 +25,7 @@ class ConfigProvider
     }
 
     /**
-     * Retrieve zend-db default dependency configuration.
+     * Retrieve BjyProfiler default dependency configuration.
      *
      * @return array
      */
