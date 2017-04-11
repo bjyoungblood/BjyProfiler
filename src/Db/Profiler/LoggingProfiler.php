@@ -73,7 +73,7 @@ class LoggingProfiler extends Profiler
      * @param string $sql
      * @param null   $parameters
      * @param null   $stack
-     * @return int|null
+     * @return int|bool
      */
     public function startQuery($sql, $parameters = null, $stack = null) {
         $result = parent::startQuery($sql, $parameters, $stack);

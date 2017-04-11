@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+         colors="true">
+    <testsuites>
+        <testsuite name="BjyProfiler Test Suite">
+            <directory>./tests/</directory>
+        </testsuite>
+    </testsuites>
+
+    <groups>
+        <exclude>
+            <group>disable</group>
+        </exclude>
+    </groups>
+
+    <filter>
+        <whitelist addUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <ini name="date.timezone" value="UTC"/>
+
+        <!-- Integration Test Variables -->
+        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_ENABLED" value="false" />
+        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_DATABASE" value="memory" />
+    </php>
+</phpunit>

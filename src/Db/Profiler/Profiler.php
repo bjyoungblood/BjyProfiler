@@ -2,6 +2,7 @@
 
 namespace BjyProfiler\Db\Profiler;
 
+use BjyProfiler\Exception\RuntimeException;
 use Zend\Db\Adapter\Profiler\ProfilerInterface;
 use Zend\Db\Adapter\StatementContainerInterface;
 
@@ -83,12 +84,12 @@ class Profiler implements ProfilerInterface
      * @param string     $sql
      * @param array|null $parameters
      * @param array|null $stack
-     * @return int|null
+     * @return int|bool
      */
     public function startQuery($sql, $parameters = null, $stack = null)
     {
         if (! $this->enabled) {
-            return null;
+            return false;
         }
 
         if (null === $stack) {
@@ -135,6 +136,10 @@ class Profiler implements ProfilerInterface
             return false;
         }
 
+        if (empty($this->profiles)) {
+            throw new RuntimeException('Query was not started.');
+        }
+
         end($this->profiles)->end();
         return true;
     }
@@ -145,17 +150,19 @@ class Profiler implements ProfilerInterface
      */
     public function getQueryProfiles($queryTypes = null)
     {
+        if (empty($this->profiles)) {
+            return [];
+        }
+
         $profiles = [];
 
-        if (! empty($this->profiles)) {
-            foreach ($this->profiles as $id => $profile) {
-                if ($queryTypes === null) {
-                    $queryTypes = $this->filterTypes;
-                }
+        foreach ($this->profiles as $id => $profile) {
+            if (null === $queryTypes) {
+                $queryTypes = $this->filterTypes;
+            }
 
-                if ($profile->getQueryType() & $queryTypes) {
-                    $profiles[$id] = $profile;
-                }
+            if ($profile->getQueryType() & $queryTypes) {
+                $profiles[$id] = $profile;
             }
         }
 

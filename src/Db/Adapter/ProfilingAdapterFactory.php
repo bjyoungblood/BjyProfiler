@@ -18,7 +18,7 @@ class ProfilingAdapterFactory implements FactoryInterface
         $config = $container->get('Configuration');
         $adapter = new ProfilingAdapter($config['db']);
 
-        if (php_sapi_name() == 'cli') {
+        if ('cli' === php_sapi_name()) {
             $logger = new Log\Logger();
             // write queries profiling info to stdout in CLI mode
             $writer = new Log\Writer\Stream('php://output');

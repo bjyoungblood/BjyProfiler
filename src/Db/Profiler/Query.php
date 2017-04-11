@@ -2,6 +2,8 @@
 
 namespace BjyProfiler\Db\Profiler;
 
+use BjyProfiler\Exception\RuntimeException;
+
 class Query
 {
     /**
@@ -58,6 +60,9 @@ class Query
      */
     public function end()
     {
+        if (null === $this->startTime) {
+            throw new RuntimeException('Query was not started.');
+        }
         $this->endTime = microtime(true);
         return $this;
     }
