@@ -25,6 +25,6 @@
 
         <!-- Integration Test Variables -->
         <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_ENABLED" value="false" />
-        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_DATABASE" value="memory" />
+        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_DATABASE" value=":memory:" />
     </php>
 </phpunit>

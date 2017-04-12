@@ -212,6 +212,7 @@ class ProfilerTest extends TestCase
     {
         foreach ($queries as $query) {
             $this->profiler->startQuery($query);
+            $this->profiler->endQuery();
         }
         $result = $this->profiler->getQueryProfiles($queryTypes);
         self::assertEquals(count($actualProfiles), count($result));

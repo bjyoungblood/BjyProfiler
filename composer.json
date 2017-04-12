@@ -23,11 +23,11 @@
         }
     ],
     "require": {
-        "php": ">=5.5",
-        "zendframework/zend-servicemanager": "^3.3",
+        "php": "^5.5 || ^7.0",
+        "zendframework/zend-servicemanager": "^3.0.3",
         "zendframework/zend-modulemanager": "^2.7",
-        "zendframework/zend-db": ">=2.8.0",
-        "zendframework/zend-log": "^2.9"
+        "zendframework/zend-db": "^2.7",
+        "zendframework/zend-log": "^2.7"
     },
     "autoload": {
         "psr-4": {
@@ -42,6 +42,6 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^6.0",
-        "zendframework/zend-mvc": "^3.0"
+        "zendframework/zend-mvc": "^2.7 || ^3.0"
     }
 }
