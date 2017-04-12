@@ -135,8 +135,7 @@ class ProfilerTest extends \PHPUnit_Framework_TestCase
 
     public function testEndQueryRaiseException()
     {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Query was not started.');
+        $this->setExpectedException(RuntimeException::class, 'Query was not started.');
         $profiler = new Profiler();
         $profiler->endQuery();
     }

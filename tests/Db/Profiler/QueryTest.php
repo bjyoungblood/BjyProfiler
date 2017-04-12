@@ -39,8 +39,7 @@ class QueryTest extends \PHPUnit_Framework_TestCase
 
     public function testEndRaiseExceptionWhenQueryTryFinishBeforeStart()
     {
-        $this->expectException(RuntimeException::class);
-        $this->expectExceptionMessage('Query was not started.');
+        $this->setExpectedException(RuntimeException::class, 'Query was not started.');
         $this->query->end();
     }
 
