@@ -20,11 +20,15 @@
         </whitelist>
     </filter>
 
+    <logging>
+        <log type="coverage-clover" target="build/logs/clover.xml"/>
+    </logging>
+
     <php>
         <ini name="date.timezone" value="UTC"/>
 
         <!-- Integration Test Variables -->
-        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_ENABLED" value="false" />
+        <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_ENABLED" value="true" />
         <env name="TESTS_ZEND_DB_ADAPTER_DRIVER_SQLITE_DATABASE" value=":memory:" />
     </php>
 </phpunit>
