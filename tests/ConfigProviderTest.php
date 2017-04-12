@@ -4,10 +4,9 @@ namespace BjyProfilerTest;
 
 use BjyProfiler\ConfigProvider;
 use BjyProfiler\Db\Adapter\ProfilingAdapterFactory;
-use PHPUnit\Framework\TestCase;
 use Zend\Db\Adapter\AdapterInterface;
 
-class ConfigProviderTest extends TestCase
+class ConfigProviderTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvoke()
     {

@@ -5,9 +5,8 @@ namespace BjyProfilerTest\Db\Profiler;
 use BjyProfiler\Db\Profiler\Profiler;
 use BjyProfiler\Db\Profiler\Query;
 use BjyProfiler\Exception\RuntimeException;
-use PHPUnit\Framework\TestCase;
 
-class QueryTest extends TestCase
+class QueryTest extends \PHPUnit_Framework_TestCase
 {
     /** @var Query */
     protected $query;

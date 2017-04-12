@@ -4,7 +4,6 @@ namespace BjyProfilerTest;
 
 use BjyProfiler\Db\Adapter\ProfilingAdapter;
 use BjyProfiler\Db\Adapter\ProfilingAdapterFactory;
-use PHPUnit\Framework\TestCase;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Db\Sql\Sql;
@@ -13,7 +12,7 @@ use Zend\Log\Writer\Mock;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
-class IntegrationTest extends TestCase
+class IntegrationTest extends \PHPUnit_Framework_TestCase
 {
 
     /**

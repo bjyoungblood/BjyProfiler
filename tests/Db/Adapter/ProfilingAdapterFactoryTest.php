@@ -5,12 +5,11 @@ namespace BjyProfilerTest\Db\Adapter;
 use BjyProfiler\Db\Adapter\ProfilingAdapter;
 use BjyProfiler\Db\Adapter\ProfilingAdapterFactory;
 use BjyProfiler\Db\Profiler\LoggingProfiler;
-use PHPUnit\Framework\TestCase;
 use Zend\Db\Adapter\AdapterInterface;
 use Zend\Mvc\Service\ServiceManagerConfig;
 use Zend\ServiceManager\ServiceManager;
 
-class ProfilingAdapterFactoryTest extends TestCase
+class ProfilingAdapterFactoryTest extends \PHPUnit_Framework_TestCase
 {
     protected $config = [
         'factories' => [

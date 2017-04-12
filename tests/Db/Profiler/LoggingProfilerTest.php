@@ -4,10 +4,9 @@ namespace BjyProfilerTest\Db\Profiler;
 
 use BjyProfiler\Db\Profiler\LoggingProfiler;
 use BjyProfiler\Db\Profiler\Profiler;
-use PHPUnit\Framework\TestCase;
 use Zend\Log;
 
-class LoggingProfilerTest extends TestCase
+class LoggingProfilerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var Log\Writer\Mock */
     protected $writer;

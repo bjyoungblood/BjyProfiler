@@ -5,11 +5,10 @@ namespace BjyProfilerTest\Db\Profiler;
 use BjyProfiler\Db\Profiler\Profiler;
 use BjyProfiler\Db\Profiler\Query;
 use BjyProfiler\Exception\RuntimeException;
-use PHPUnit\Framework\TestCase;
 use Zend\Db\Adapter\Adapter;
 use Zend\Db\Sql\Sql;
 
-class ProfilerTest extends TestCase
+class ProfilerTest extends \PHPUnit_Framework_TestCase
 {
     /** @var Profiler */
     protected $profiler;

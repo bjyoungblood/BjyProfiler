@@ -3,10 +3,9 @@
 namespace BjyProfilerTest\Db\Adapter;
 
 use BjyProfiler\Db\Adapter\ProfilingAdapter;
-use PHPUnit\Framework\TestCase;
 use Zend\Db\Adapter\Adapter;
 
-class ProfilingAdapterTest extends TestCase
+class ProfilingAdapterTest extends \PHPUnit_Framework_TestCase
 {
     public function testInstanceOfAdapter()
     {
