@@ -1,5 +1,5 @@
 {
-    "name": "genby8/bjy-profiler",
+    "name": "genby/bjy-profiler",
     "description": "Database profiler for Laminar\\Db (also plugin for ZendDeveloperTools)",
     "type": "library",
     "license": "MIT",
