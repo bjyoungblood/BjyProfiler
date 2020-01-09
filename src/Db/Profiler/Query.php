@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BjyProfiler\Db\Profiler;
 
 use BjyProfiler\Db\Profiler\Profiler;

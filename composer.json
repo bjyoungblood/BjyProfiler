@@ -1,32 +1,29 @@
 {
-    "name": "bjyoungblood/bjy-profiler",
-    "description": "Database profiler for Zend\\Db (also plugin for ZendDeveloperTools)",
+    "name": "genby8/bjy-profiler",
+    "description": "Database profiler for Laminar\\Db (also plugin for ZendDeveloperTools)",
     "type": "library",
     "license": "MIT",
     "keywords": [
-        "zf2",
+        "zf3",
         "db",
         "profiler",
         "zdt"
     ],
-    "homepage": "https://github.com/bjyoungblood/BjyProfiler",
+    "homepage": "https://github.com/genby8/BjyProfiler",
     "authors": [
         {
-            "name": "Ben Youngblood",
-            "email": "bx.youngblood@gmail.com",
-            "homepage": "http://bjyoungblood.com/"
+            "name": "Alexandr Sudarchikov",
+            "email": "genby8@gmail.com"
         }
     ],
     "require": {
-        "php": ">=5.3",
-        "zendframework/zend-db": ">=2.1.0"
+        "php": ">=7.1",
+        "laminas/laminas-db": ">=2.11.0",
+        "laminas/laminas-log": ">=2.12.0"
     },
     "autoload": {
-        "psr-0": {
-            "BjyProfiler": "src/"
-        },
-        "classmap": [
-            "./Module.php"
-        ]
+        "psr-4": {
+            "BjyProfiler\\": "module/BjyProfiler/src/"
+        }
     }
 }
